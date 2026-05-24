@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import API from "../api/taskApi";
 
 const Login = () => {
 
@@ -14,8 +14,8 @@ const Login = () => {
 
     try {
 
-      const res = await axios.post(
-        "http://localhost:8000/api/auth/login",
+      const res = await API.post(
+        "/auth/login",
         formData
       );
 
@@ -23,12 +23,13 @@ const Login = () => {
         "token",
         res.data.token
       );
-      localStorage.setItem(
-  "user",
-  JSON.stringify(res.data.user)
-);
 
-      alert("Login Successful ");
+      localStorage.setItem(
+        "user",
+        JSON.stringify(res.data.user)
+      );
+
+      alert("Login Successful 🚀");
 
       window.location.href = "/dashboard";
 
@@ -61,7 +62,7 @@ const Login = () => {
           <input
             type="text"
             placeholder="Email or Mobile"
-            value={formData.emailOrMobile || ""}
+            value={formData.emailOrMobile}
             onChange={(e) =>
               setFormData({
                 ...formData,
@@ -69,6 +70,7 @@ const Login = () => {
               })
             }
             className="w-full bg-[#F8F4EF] p-4 rounded-2xl outline-none"
+            required
           />
 
           {/* Password */}
@@ -76,7 +78,7 @@ const Login = () => {
           <input
             type="password"
             placeholder="Password"
-            value={formData.password || ""}
+            value={formData.password}
             onChange={(e) =>
               setFormData({
                 ...formData,
@@ -84,6 +86,7 @@ const Login = () => {
               })
             }
             className="w-full bg-[#F8F4EF] p-4 rounded-2xl outline-none"
+            required
           />
 
           {/* Login Button */}

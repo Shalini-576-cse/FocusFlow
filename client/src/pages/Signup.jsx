@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import API from "../api/taskApi";
 
 const Signup = () => {
 
@@ -16,8 +16,8 @@ const Signup = () => {
 
     try {
 
-      const res = await axios.post(
-        "http://localhost:8000/api/auth/register",
+      const res = await API.post(
+        "/auth/register",
         formData
       );
 
@@ -25,12 +25,13 @@ const Signup = () => {
         "token",
         res.data.token
       );
-      localStorage.setItem(
-  "user",
-  JSON.stringify(res.data.user)
-);
 
-      alert("Account Created successfully");
+      localStorage.setItem(
+        "user",
+        JSON.stringify(res.data.user)
+      );
+
+      alert("Account Created Successfully 🚀");
 
       window.location.href = "/dashboard";
 
@@ -58,10 +59,12 @@ const Signup = () => {
 
         <div className="mt-8 space-y-5">
 
+          {/* Name */}
+
           <input
             type="text"
             placeholder="Name"
-            value={formData.name || ""}
+            value={formData.name}
             onChange={(e) =>
               setFormData({
                 ...formData,
@@ -69,12 +72,15 @@ const Signup = () => {
               })
             }
             className="w-full bg-[#F8F4EF] p-4 rounded-2xl outline-none"
+            required
           />
+
+          {/* Email */}
 
           <input
             type="email"
             placeholder="Email"
-            value={formData.email || ""}
+            value={formData.email}
             onChange={(e) =>
               setFormData({
                 ...formData,
@@ -82,12 +88,15 @@ const Signup = () => {
               })
             }
             className="w-full bg-[#F8F4EF] p-4 rounded-2xl outline-none"
+            required
           />
+
+          {/* Mobile */}
 
           <input
             type="text"
             placeholder="Mobile Number"
-            value={formData.mobile || ""}
+            value={formData.mobile}
             onChange={(e) =>
               setFormData({
                 ...formData,
@@ -95,12 +104,15 @@ const Signup = () => {
               })
             }
             className="w-full bg-[#F8F4EF] p-4 rounded-2xl outline-none"
+            required
           />
+
+          {/* Password */}
 
           <input
             type="password"
             placeholder="Password"
-            value={formData.password || ""}
+            value={formData.password}
             onChange={(e) =>
               setFormData({
                 ...formData,
@@ -108,7 +120,10 @@ const Signup = () => {
               })
             }
             className="w-full bg-[#F8F4EF] p-4 rounded-2xl outline-none"
+            required
           />
+
+          {/* Signup Button */}
 
           <button
             type="submit"
@@ -116,6 +131,8 @@ const Signup = () => {
           >
             Signup
           </button>
+
+          {/* Login Link */}
 
           <p className="text-center text-gray-500">
 
