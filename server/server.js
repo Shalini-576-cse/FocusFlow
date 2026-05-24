@@ -24,7 +24,10 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: [
+      "http://localhost:5173",
+      "https://focus-flow-3fyu4i3fz-shalini-576-cses-projects.vercel.app",
+    ],
     methods: [
       "GET",
       "POST",
