@@ -25,9 +25,9 @@ app.use(express.json());
 app.use(
   cors({
     origin: [
-      "http://localhost:5173",
-      "https://focus-flow-3fyu4i3fz-shalini-576-cses-projects.vercel.app",
-    ],
+  "http://localhost:5173",
+  "https://focus-flow-3fyu4i3fz-shalini-576-cses-projects.vercel.app",
+],
     methods: [
       "GET",
       "POST",
@@ -62,9 +62,8 @@ app.get("/", (req, res) => {
 const PORT = process.env.PORT || 8000;
 
 app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 
-  console.log(
-    `Server running on port ${PORT}`
-  );
-
+  console.log("EMAIL_USER:", process.env.EMAIL_USER);
+  console.log("CLIENT_URL:", process.env.CLIENT_URL);
 });
